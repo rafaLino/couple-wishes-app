@@ -1,5 +1,5 @@
 import { useAuth } from "@/features/auth";
-import api, { LoginResponse } from "@/lib/api";
+import api from "@/lib/api";
 import { saveOnLocalStorageAsync } from "@/lib/utils";
 import { useMutation } from "@tanstack/react-query";
 

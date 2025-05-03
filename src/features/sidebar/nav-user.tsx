@@ -1,10 +1,8 @@
 import {
-    BellIcon,
-    CreditCardIcon,
     Home,
     LogOutIcon,
     MoreVerticalIcon,
-    UserCircleIcon,
+    UserCircleIcon
 } from "lucide-react"
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
