@@ -14,3 +14,8 @@ My wife often sends me links of things she wants, but I keep losing track of the
 ## How It Works
 
 [API](https://github.com/rafaLino/couple-wishes-api)
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
