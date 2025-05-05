@@ -140,11 +140,11 @@ async function deleteUser(id: number) {
     return createFetch(`users/${id}`, 'DELETE')
 }
 
-async function checkUsername(username: string) {
+async function checkUsername(username: string): Promise<boolean> {
     return createFetch(`users/checkusername/${username}`)
 }
 
-async function updatePassword(password: string) {
+async function updatePassword(password: string): Promise<void> {
     return createFetch(`users/updatepassword`, 'POST', { password })
 }
 
@@ -154,6 +154,10 @@ async function addCouple(username: string): Promise<User> {
 
 async function removeCouple(couple_id: number): Promise<void> {
     return createFetch(`users/couple/${couple_id}`, 'DELETE')
+}
+
+async function createDefault(): Promise<void> {
+    return createFetch(`users/default`, 'POST', null, false)
 }
 
 
@@ -170,6 +174,7 @@ export default {
         updatePassword,
         addCouple,
         removeCouple,
+        createDefault
     },
     wishes: {
         getWishes,

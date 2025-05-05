@@ -65,3 +65,17 @@ export function useUnLinkUserMutation() {
         mutationKey: ['unlinkUser']
     })
 }
+
+export function useCreateDefaultMutation() {
+    return useMutation({
+        mutationFn: api.users.createDefault,
+        mutationKey: ['createDefault']
+    })
+}
+
+export function useChangePasswordMutation() {
+    return useMutation({
+        mutationFn: api.users.updatePassword,
+        mutationKey: ['changePassword']
+    })
+}

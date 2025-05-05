@@ -12,6 +12,7 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as LoginImport } from './routes/login'
+import { Route as CreateImport } from './routes/create'
 import { Route as MainImport } from './routes/_main'
 import { Route as MainIndexImport } from './routes/_main/index'
 import { Route as MainAccountImport } from './routes/_main/account'
@@ -21,6 +22,12 @@ import { Route as MainAccountImport } from './routes/_main/account'
 const LoginRoute = LoginImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CreateRoute = CreateImport.update({
+  id: '/create',
+  path: '/create',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -50,6 +57,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof MainImport
+      parentRoute: typeof rootRoute
+    }
+    '/create': {
+      id: '/create'
+      path: '/create'
+      fullPath: '/create'
+      preLoaderRoute: typeof CreateImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -92,12 +106,14 @@ const MainRouteWithChildren = MainRoute._addFileChildren(MainRouteChildren)
 
 export interface FileRoutesByFullPath {
   '': typeof MainRouteWithChildren
+  '/create': typeof CreateRoute
   '/login': typeof LoginRoute
   '/account': typeof MainAccountRoute
   '/': typeof MainIndexRoute
 }
 
 export interface FileRoutesByTo {
+  '/create': typeof CreateRoute
   '/login': typeof LoginRoute
   '/account': typeof MainAccountRoute
   '/': typeof MainIndexRoute
@@ -106,6 +122,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_main': typeof MainRouteWithChildren
+  '/create': typeof CreateRoute
   '/login': typeof LoginRoute
   '/_main/account': typeof MainAccountRoute
   '/_main/': typeof MainIndexRoute
@@ -113,20 +130,28 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/account' | '/'
+  fullPaths: '' | '/create' | '/login' | '/account' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/account' | '/'
-  id: '__root__' | '/_main' | '/login' | '/_main/account' | '/_main/'
+  to: '/create' | '/login' | '/account' | '/'
+  id:
+    | '__root__'
+    | '/_main'
+    | '/create'
+    | '/login'
+    | '/_main/account'
+    | '/_main/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   MainRoute: typeof MainRouteWithChildren
+  CreateRoute: typeof CreateRoute
   LoginRoute: typeof LoginRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   MainRoute: MainRouteWithChildren,
+  CreateRoute: CreateRoute,
   LoginRoute: LoginRoute,
 }
 
@@ -141,6 +166,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/_main",
+        "/create",
         "/login"
       ]
     },
@@ -150,6 +176,9 @@ export const routeTree = rootRoute
         "/_main/account",
         "/_main/"
       ]
+    },
+    "/create": {
+      "filePath": "create.tsx"
     },
     "/login": {
       "filePath": "login.tsx"

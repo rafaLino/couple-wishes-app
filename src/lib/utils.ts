@@ -14,3 +14,11 @@ export function saveOnLocalStorageAsync(data: Pick<LoginResponse, "token" | "use
     resolve(true)
   })
 }
+
+export function clearLocalStorageAsync() {
+  return new Promise((resolve) => {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('user')
+    resolve(true)
+  })
+}
