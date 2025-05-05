@@ -15,26 +15,30 @@ export function CreateDefaultUser() {
                     <CardDescription>Create your default user, manage others with them</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div
-                        className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-                    >
-                        <span className={("flex h-2 w-2 translate-y-1 rounded-full bg-red-500")} />
-                        <div className="flex flex-col space-y-4 justify-center">
-                            <p className="text-sm font-medium leading-none">
-                                {mutation.isError && mutation.failureReason?.message}
-                            </p>
+                    {mutation.isError && (
+                        <div
+                            className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                        >
+                            <span className={("flex h-2 w-2 translate-y-1 rounded-full bg-red-500")} />
+                            <div className="flex flex-col space-y-4 justify-center">
+                                <p className="text-sm font-medium leading-none">
+                                    {mutation.failureReason?.message}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    <div
-                        className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
-                    >
-                        <span className={("flex h-2 w-2 translate-y-1 rounded-full bg-sky-500")} />
-                        <div className="flex flex-col space-y-4 justify-center">
-                            <p className="text-sm font-medium leading-none">
-                                {mutation.isSuccess && 'Your default user has been created!'}
-                            </p>
+                    )}
+                    {mutation.isSuccess && (
+                        <div
+                            className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
+                        >
+                            <span className={("flex h-2 w-2 translate-y-1 rounded-full bg-sky-500")} />
+                            <div className="flex flex-col space-y-4 justify-center">
+                                <p className="text-sm font-medium leading-none">
+                                    Your default user has been created!
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </CardContent>
                 <CardFooter className="flex">
                     {mutation.isSuccess ? (
